@@ -7,6 +7,14 @@ import java.util.Scanner;
 public class AddressBook {
     ArrayList<Contact> contacts = new ArrayList<>();
 
+    public ArrayList<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(ArrayList<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
     private String addressBookName;
     public String getAddressBookName() {
         return addressBookName;
@@ -35,7 +43,7 @@ public class AddressBook {
 
         List<Contact> duplicateName = contacts.stream().filter(contact-> contact.getFirstName().equals(fName)).toList();
         if (!(duplicateName.isEmpty())){
-            System.out.println("Contact with given First and Last Names already exists!!!");
+            System.out.println("Contact with given First Name already exists!!!");
             addContact();
             return;
         }
