@@ -2,10 +2,11 @@ package com.adresssystem;
 
 public class Contact {
     private String name;
-    private String age;
-    private String phoneNumber;
+    private String address;
     private String city;
     private String state;
+    private String phoneNumber;
+    private String email;
 
     public String getName() {
         return name;
@@ -15,12 +16,12 @@ public class Contact {
         this.name = name;
     }
 
-    public String getAge() {
-        return age;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -46,16 +47,23 @@ public class Contact {
     public void setState(String state) {
         this.state = state;
     }
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {
-        return "\nContact{" +
+        return "Contact{" +
                 "name='" + name + '\'' +
-                ", age='" + age + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                "}";
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
