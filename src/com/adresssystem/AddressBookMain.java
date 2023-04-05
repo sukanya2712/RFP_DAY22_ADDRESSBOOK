@@ -5,17 +5,23 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
-    Scanner in = new Scanner(System.in);
-    Map<String,AddressBook> Dictionary= new HashMap<>();
 
-    public void addAddressBook() {
+    public static Map<String,AddressBook> addressBookMap= new HashMap<>();
+
+
+    public static void addAddressBook() {
+        Scanner in = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        System.out.println("Enter the name of the address book: ");
+        System.out.println("Enter the name of the new Address Book: ");
         addressBook.setAddressBookName(in.next());
 
-        Dictionary.put(addressBook.getAddressBookName(),addressBook);
-        System.out.println(addressBook);
+        if (addressBookMap.containsKey(addressBook.getAddressBookName())) {
+            System.out.println("Address Book already exists!!!!");
+            return;
+        }
+
+        addressBookMap.put(addressBook.getAddressBookName(),addressBook);
         System.out.println("Address Book Added!!!");
         System.out.println();
 
@@ -40,12 +46,13 @@ public class AddressBookMain {
         }
     }
 
-    public void addContacts() {
+    public static void addContacts() {
+        Scanner in = new Scanner(System.in);
         System.out.println("Enter the name of the address book you want to add contact:");
         String name = in.next();
 
-        if(Dictionary.containsKey(name)) {
-            AddressBook Temp= Dictionary.get(name);
+        if(addressBookMap.containsKey(name)) {
+            AddressBook Temp= addressBookMap.get(name);
             Temp.addContact();
             System.out.println(Temp);
             System.out.println("Contact Added!!!");
@@ -55,35 +62,38 @@ public class AddressBookMain {
             System.out.println("Given Address Book not Found!!!\n");
     }
 
-    public void editContact(){
+    public static void editContact(){
+        Scanner in = new Scanner(System.in);
         System.out.println("Enter the name of the address book, the contact you want to edit exists:");
         String name= in.next();
 
-        if(Dictionary.containsKey(name)) {
-            AddressBook Temp= Dictionary.get(name);
+        if(addressBookMap.containsKey(name)) {
+            AddressBook Temp= addressBookMap.get(name);
             Temp.editDetails();
         }
         else
             System.out.println("Given Address Book not Found!!!\n");
     }
 
-    public void deleteContact(){
+    public static void deleteContact(){
+        Scanner in = new Scanner(System.in);
         System.out.println("Enter the name of the address book, the contact you want to Delete exists:");
-        String name= in.nextLine();
+        String name= in.next();
 
-        if(Dictionary.containsKey(name)) {
-            AddressBook Temp= Dictionary.get(name);
+        if(addressBookMap.containsKey(name)) {
+            AddressBook Temp= addressBookMap.get(name);
             Temp.deleteDetails();
         }
         else
             System.out.println("Given Address Book not Found!!!\n");
     }
 
-    public void displayAddressBook(){
+    public static void displayAddressBook(){
+        Scanner in = new Scanner(System.in);
         System.out.println("Enter the name of the address book you want to Display:");
         String name = in.next();
-        if(Dictionary.containsKey(name)) {
-            AddressBook Temp = Dictionary.get(name);
+        if(addressBookMap.containsKey(name)) {
+            AddressBook Temp = addressBookMap.get(name);
             System.out.println(Temp);
         }
         else
@@ -93,7 +103,6 @@ public class AddressBookMain {
         System.out.println("Welcome to Address Book Program in Address Book Main class on Main Branch");
 
         Scanner in = new Scanner(System.in);
-        AddressBookMain addressBookMain= new AddressBookMain();
         boolean status= true;
         while(status) {
             System.out.println("******************MENU:******************");
@@ -108,24 +117,23 @@ public class AddressBookMain {
 
             switch (choice) {
                 case 1:
-                    addressBookMain.addAddressBook();
-                    System.out.println(addressBookMain);
+                    addAddressBook();
                     System.out.println();
                     break;
                 case 2:
-                    addressBookMain.addContacts();
+                    addContacts();
                     break;
                 case 3:
-                    addressBookMain.editContact();
+                    editContact();
                     break;
                 case 4:
-                    addressBookMain.deleteContact();
+                    deleteContact();
                     break;
                 case 5:
-                    System.out.println(addressBookMain);
+
                     break;
                 case 6:
-                    addressBookMain.displayAddressBook();
+                    displayAddressBook();
                     break;
                 default:
                     status=false;
