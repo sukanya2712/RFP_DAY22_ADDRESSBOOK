@@ -141,7 +141,28 @@ public class AddressBookMain {
         String name = in.next();
         if(addressBookMap.containsKey(name)) {
             AddressBook Temp = addressBookMap.get(name);
-            List<Contact> sortedList = Temp.getContacts().stream().sorted(Comparator.comparing(Contact::getFirstName)).collect(Collectors.toList());
+            System.out.println("Choose the option to sort the contacts in the Address Book based on:");
+            System.out.println("1.First Name\t 2.City \t 3.State\t 4.ZIP Code");
+            int choice = in.nextInt();
+
+            List<Contact> sortedList = new ArrayList<>();
+            switch (choice){
+                case 1:
+                    sortedList = Temp.getContacts().stream().sorted(Comparator.comparing(Contact::getFirstName)).collect(Collectors.toList());
+                    break;
+                case 2:
+                    sortedList = Temp.getContacts().stream().sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList());
+                    break;
+                case 3:
+                    sortedList = Temp.getContacts().stream().sorted(Comparator.comparing(Contact::getState)).collect(Collectors.toList());
+                    break;
+                case 4:
+                    sortedList = Temp.getContacts().stream().sorted(Comparator.comparing(Contact::getZip)).collect(Collectors.toList());
+                    break;
+                default:
+                    System.out.println("Choose Valid Option!!!");
+                    break;
+            }
             System.out.println("The Sorted Contacts: ");
             System.out.println(sortedList);
             System.out.println();
