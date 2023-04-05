@@ -20,16 +20,25 @@ public class AddressBookMain {
         System.out.println();
     }
 
-    public void editContacts(){
+    public void editContact(){
         System.out.println("Enter the name of the address book, the contact you want to edit exists:");
         String name= in.nextLine();
 
         if(Dictionary.containsKey(name)) {
             AddressBook Temp= Dictionary.get(name);
-            Temp.editContact();
-            System.out.println(Temp);
-            System.out.println("Contact Added!!!");
-            System.out.println();
+            Temp.editDetails();
+        }
+        else
+            System.out.println("Given Address Book not Found!!!\n");
+    }
+
+    public void deleteContact(){
+        System.out.println("Enter the name of the address book, the contact you want to Delete exists:");
+        String name= in.nextLine();
+
+        if(Dictionary.containsKey(name)) {
+            AddressBook Temp= Dictionary.get(name);
+            Temp.deleteDetails();
         }
         else
             System.out.println("Given Address Book not Found!!!\n");

@@ -49,7 +49,7 @@ public class AddressBook {
         System.out.println();
     }
 
-    public void editContact(){
+    public void editDetails(){
         System.out.println("Enter the Name of the Contact you want to Edit:");
         String name= in.nextLine();
 
@@ -65,32 +65,68 @@ public class AddressBook {
                         System.out.println("Current Name: " + Temp.getName());
                         System.out.print("Enter the NEW Name: ");
                         Temp.setName(in.nextLine());
+                        break;
                     case 2:
                         System.out.println("Current Address: " + Temp.getAddress());
                         System.out.print("Enter the NEW Address: ");
                         Temp.setAddress(in.nextLine());
+                        break;
                     case 3:
                         System.out.println("Current City: "+Temp.getCity());
                         System.out.print("Enter the NEW City: ");
                         Temp.setCity(in.nextLine());
+                        break;
                     case 4:
                         System.out.println("Current State: "+Temp.getState());
                         System.out.println("Enter the NEW State: ");
                         Temp.setState(in.nextLine());
+                        break;
                     case 5:
                         System.out.println("Current Phone Number: "+Temp.getPhoneNumber());
                         System.out.println("Enter the NEW Phone Number: ");
                         Temp.setPhoneNumber(in.nextLine());
+                        break;
                     case 6:
                         System.out.println("Current Email Address: "+Temp.getEmail());
                         System.out.println("Enter the NEW Email Address: ");
                         Temp.setEmail(in.nextLine());
+                        break;
                     default:
                         System.out.println("Enter a valid field!!!");
+                        break;
                 }
                 System.out.println("Contact Edited!!!");
                 System.out.println("Contact Details AFTER Edit:");
                 System.out.println(Temp);
+            }
+            else
+                System.out.println("Contact with given name not found!!!");
+        }
+    }
+
+    public void deleteDetails(){
+        System.out.println("Enter the Name of the Contact you want to Delete:");
+        String name= in.nextLine();
+
+        for (Contact Temp : contacts) {
+            if (Temp.getName().equals(name)) {
+                System.out.println("Details of the Contact you want to DELETE:");
+                System.out.println(Temp);
+                System.out.println("Are you sure you want to DELETE the Contact?");
+                System.out.println("1. YES \t 2. NO");
+                int choice = in.nextInt();
+                switch (choice) {
+                    case 1:
+                        contacts.remove(Temp);
+                        System.out.println("Contact Deleted!!!");
+                        break;
+                    case 2:
+                        System.out.println("Contact is NOT deleted!!!");
+                        break;
+                    default:
+                        System.out.println("Select a valid option!!!");
+                        break;
+                }
             }
             else
                 System.out.println("Contact with given name not found!!!");
