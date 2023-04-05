@@ -22,7 +22,7 @@ public class AddressBook {
         return "AddressBook{" +
                 "contacts=" + contacts +
                 ", addressBookName='" + addressBookName + '\'' +
-                '}';
+                "}\n";
     }
 
     public void addContact(){
@@ -52,9 +52,11 @@ public class AddressBook {
     public void editDetails(){
         System.out.println("Enter the Name of the Contact you want to Edit:");
         String name= in.nextLine();
+        boolean contactFound=false;
 
         for (Contact Temp : contacts) {
             if (Temp.getName().equals(name)) {
+                contactFound=true;
                 System.out.println("Current Contact Details:");
                 System.out.println(Temp);
                 System.out.println("Enter the name of the Field you want to Edit in Contact's Details:");
@@ -64,32 +66,32 @@ public class AddressBook {
                     case 1:
                         System.out.println("Current Name: " + Temp.getName());
                         System.out.print("Enter the NEW Name: ");
-                        Temp.setName(in.nextLine());
+                        Temp.setName(in.next());
                         break;
                     case 2:
                         System.out.println("Current Address: " + Temp.getAddress());
                         System.out.print("Enter the NEW Address: ");
-                        Temp.setAddress(in.nextLine());
+                        Temp.setAddress(in.next());
                         break;
                     case 3:
                         System.out.println("Current City: "+Temp.getCity());
                         System.out.print("Enter the NEW City: ");
-                        Temp.setCity(in.nextLine());
+                        Temp.setCity(in.next());
                         break;
                     case 4:
                         System.out.println("Current State: "+Temp.getState());
                         System.out.println("Enter the NEW State: ");
-                        Temp.setState(in.nextLine());
+                        Temp.setState(in.next());
                         break;
                     case 5:
                         System.out.println("Current Phone Number: "+Temp.getPhoneNumber());
                         System.out.println("Enter the NEW Phone Number: ");
-                        Temp.setPhoneNumber(in.nextLine());
+                        Temp.setPhoneNumber(in.next());
                         break;
                     case 6:
                         System.out.println("Current Email Address: "+Temp.getEmail());
                         System.out.println("Enter the NEW Email Address: ");
-                        Temp.setEmail(in.nextLine());
+                        Temp.setEmail(in.next());
                         break;
                     default:
                         System.out.println("Enter a valid field!!!");
@@ -99,17 +101,19 @@ public class AddressBook {
                 System.out.println("Contact Details AFTER Edit:");
                 System.out.println(Temp);
             }
-            else
-                System.out.println("Contact with given name not found!!!");
         }
+        if(!contactFound)
+            System.out.println("Contact with given name NOT FOUND!!!");
     }
 
     public void deleteDetails(){
         System.out.println("Enter the Name of the Contact you want to Delete:");
         String name= in.nextLine();
+        boolean contactFound=false;
 
         for (Contact Temp : contacts) {
             if (Temp.getName().equals(name)) {
+                contactFound=true;
                 System.out.println("Details of the Contact you want to DELETE:");
                 System.out.println(Temp);
                 System.out.println("Are you sure you want to DELETE the Contact?");
@@ -128,8 +132,8 @@ public class AddressBook {
                         break;
                 }
             }
-            else
-                System.out.println("Contact with given name not found!!!");
         }
+        if(!contactFound)
+            System.out.println("Contact with given name NOT FOUND!!!");
     }
 }
