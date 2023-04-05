@@ -96,6 +96,10 @@ public class AddressBookMain {
             case 1:
                 System.out.print("Enter the name of the City: ");
                 String cityName = in.next();
+//                searchdata-list
+//                ArrayList<String> listsearchdata = new ArrayList<>();
+//                listsearchdata.add(cityName);
+
                 List<Contact> cityList = new ArrayList<>();
                 addressBookMap.values().stream().forEach(addressBook -> cityList.addAll(addressBook.getContacts().stream().filter(
                         contact -> contact.getCity().equalsIgnoreCase(cityName)).toList()));
