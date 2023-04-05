@@ -1,6 +1,7 @@
 package com.adresssystem;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -96,10 +97,6 @@ public class AddressBookMain {
             case 1:
                 System.out.print("Enter the name of the City: ");
                 String cityName = in.next();
-//                searchdata-list
-//                ArrayList<String> listsearchdata = new ArrayList<>();
-//                listsearchdata.add(cityName);
-
                 List<Contact> cityList = new ArrayList<>();
                 addressBookMap.values().stream().forEach(addressBook -> cityList.addAll(addressBook.getContacts().stream().filter(
                         contact -> contact.getCity().equalsIgnoreCase(cityName)).toList()));
@@ -137,6 +134,21 @@ public class AddressBookMain {
         else
             System.out.println("Given Address Book not Found!!!\n");
     }
+
+    public static void displaySortedAddressBook(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the name of the address book you want to Display:");
+        String name = in.next();
+        if(addressBookMap.containsKey(name)) {
+            AddressBook Temp = addressBookMap.get(name);
+            List<Contact> sortedList = Temp.getContacts().stream().sorted(Comparator.comparing(Contact::getFirstName)).collect(Collectors.toList());
+            System.out.println("The Sorted Contacts: ");
+            System.out.println(sortedList);
+            System.out.println();
+        }
+        else
+            System.out.println("Given Address Book not Found!!!\n");
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program in Address Book Main class on Main Branch");
 
@@ -151,7 +163,8 @@ public class AddressBookMain {
             System.out.println("=> To Search all the Contacts from a specific City or specific State: PRESS 5");
             System.out.println("=> To Display Dictionary of Address Books: PRESS 6");
             System.out.println("=> To Display Address Books Of Contacts: PRESS 7");
-            System.out.println("=> To EXIT: PRESS 8");
+            System.out.println("=> To Display Contacts in an Address Book in Sorted Order based on a specific detail: PRESS 8");
+            System.out.println("=> To EXIT: PRESS 9");
             int choice = in.nextInt();
 
             switch (choice) {
@@ -176,6 +189,9 @@ public class AddressBookMain {
                     break;
                 case 7:
                     displayAddressBook();
+                    break;
+                case 8:
+                    displaySortedAddressBook();
                     break;
                 default:
                     status=false;
